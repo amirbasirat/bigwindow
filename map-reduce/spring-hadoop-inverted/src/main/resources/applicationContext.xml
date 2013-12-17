@@ -13,11 +13,11 @@
 	</configuration>
 
 	<job id="InvertedIndexJob" 
-		input-path="${invertedindex.input.path}"
-		output-path="${invertedindex.output.path}"
-		libs="${LIB_DIR}/SpringHadoopInvertedIndex-1.0-SNAPSHOT.jar"
-		mapper="com.activsteps.hadoop.InvertedIndex.InvertedIndexMapper"
-		reducer="com.activsteps.hadoop.InvertedIndex.InvertedIndexReducer" 
+		input-path="${wordcount.input.path}"
+		output-path="${wordcount.output.path}"
+		libs="${LIB_DIR}/spring-hadoop-wordcount-0.0.1.jar"
+		mapper="com.activsteps.springhadoop.invertedindex.InvertedIndex.InvertedIndexMapper"
+		reducer="com.activsteps.springhadoop.invertedindex.InvertedIndex.InvertedIndexReducer" 
 		/>
 
 		<job-runner id="runner" run-at-startup="true" 

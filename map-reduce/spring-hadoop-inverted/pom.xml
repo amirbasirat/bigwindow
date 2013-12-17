@@ -1,13 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.activsteps.hadoop</groupId>
-  <artifactId>SpringHadoopInvertedIndex</artifactId>
-  <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>SpringHadoopInvertedIndex</name>
-  <url>http://maven.apache.org</url>
- <properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>spring-hadoop-wordcount</groupId>
+	<artifactId>spring-hadoop-wordcount</artifactId>
+	<version>0.0.1</version>
+	<packaging>jar</packaging>
+
+	<name>spring-hadoop-wordcount</name>
+
+
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -30,8 +33,8 @@
 					<repositoryLayout>flat</repositoryLayout>
 					<programs>
 						<program>
-							<mainClass>com.activsteps.hadoop.InvertedIndex</mainClass>
-							<name>invertedindex</name>
+							<mainClass>com.pivotal.springhadoop.wordcount.WordCount</mainClass>
+							<name>wordcount</name>
 						</program>
 					</programs>
 				</configuration>
@@ -51,11 +54,15 @@
 			<version>1.1</version>
 		</dependency>
 
+		<!-- <dependency> <groupId>org.apache.hadoop</groupId> <artifactId>hadoop-client</artifactId> 
+			<version>2.0.3-alpha</version> </dependency> -->
+
 		<dependency>
 			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-client</artifactId>
-			<version>2.0.3-alpha</version>
+			<artifactId>hadoop-core</artifactId>
+			<version>1.1.2</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -88,4 +95,3 @@
 		</dependency>
 	</dependencies>
 </project>
- 

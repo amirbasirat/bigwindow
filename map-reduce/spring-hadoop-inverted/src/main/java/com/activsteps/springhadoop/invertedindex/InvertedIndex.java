@@ -1,17 +1,14 @@
-package com.activsteps.hadoop;
+package com.activsteps.springhadoop.invertedindex;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,7 +19,7 @@ public class InvertedIndex {
 	public static void main(String[] args) throws Exception {
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext(
 				"/applicationContext.xml", InvertedIndex.class);
-		log.info("InvertedIndex Application Running");
+		log.info("Streaming Application Running");
 		context.registerShutdownHook();
 	}
 
@@ -43,18 +40,19 @@ public class InvertedIndex {
 		}
 	}
 
-	public static class InvertedIndexReducer extends
-			Reducer<Text, IntWritable, Text, IntWritable> {
-		private IntWritable result = new IntWritable();
+	public static class InvertedIndexReducer extends Reducer<Text, Text, Text, Text> {
+		@Override
+		public void reduce(Text text, Iterable<Text> textIterator, Context context)
+				throws IOException, InterruptedException {
 
-		public void reduce(Text key, Iterable<IntWritable> values,
-				Context context) throws IOException, InterruptedException {
-			int sum = 0;
-			for (IntWritable val : values) {
-				sum += val.get();
+			StringBuffer sbf = new StringBuffer();
+			for (Text val : textIterator) {
+				sbf.append(val.toString());
+				sbf.append(",");
+
 			}
-			result.set(sum);
-			context.write(key, result);
+
+			context.write(text, new Text(sbf.toString()));
 		}
 	}
 
