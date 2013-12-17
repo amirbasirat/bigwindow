@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>spring-hadoop-wordcount</groupId>
-	<artifactId>spring-hadoop-wordcount</artifactId>
+	<groupId>spring-hadoop-inverted</groupId>
+	<artifactId>spring-hadoop-inverted</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>spring-hadoop-wordcount</name>
+	<name>spring-hadoop-inverted</name>
 
 
 	<properties>
@@ -25,20 +25,7 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>appassembler-maven-plugin</artifactId>
-				<version>1.2.2</version>
-				<configuration>
-					<repositoryLayout>flat</repositoryLayout>
-					<programs>
-						<program>
-							<mainClass>com.pivotal.springhadoop.wordcount.WordCount</mainClass>
-							<name>wordcount</name>
-						</program>
-					</programs>
-				</configuration>
-			</plugin>
+			
 		</plugins>
 	</build>
 	<dependencies>
