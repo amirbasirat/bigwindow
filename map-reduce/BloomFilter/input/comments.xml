@@ -1,0 +1,14 @@
+ <row Id="30" PostId="33" Text="ah yes, `compcln.exe` -- this server doesn't have SP2 yet, I was deathly afraid of that exploding the meager 1GB it has left." CreationDate="2009-07-15T07:17:21.533" UserId="1" />
+  <row Id="32" PostId="27" Text="I haven't heard of ferrite beads before. Interesting." CreationDate="2009-07-15T07:18:49.707" UserId="17" />
+  <row Id="36" PostId="37" Text="Had the same problem on my white MacBook.  It has slowly weaned me off Windows development and onto MacOS." CreationDate="2009-07-15T07:20:40.903" UserId="14" />
+  <row Id="38" PostId="54" Text="Imgburn is awesome and free." CreationDate="2009-07-15T07:28:07.610" UserId="76" />
+  <row Id="40" PostId="72" Score="1" Text="+1 for InfraRecorder" CreationDate="2009-07-15T07:30:01.927" UserId="122" />
+  <row Id="42" PostId="62" Text="This will still prompt you for elevation even if it is ticked. This just forces the application to always run as administrator." CreationDate="2009-07-15T07:30:56.807" UserId="3981" />
+  <row Id="44" PostId="81" Score="1" Text="Of course, there's MAMP for Mac OS X as well, but OS X comes preinstalled with Apache and PHP, you just have to install MySQL, which is pretty easy." CreationDate="2009-07-15T07:31:43.700" UserId="55" />
+  <row Id="45" PostId="71" Score="3" Text="nice! Never heard of it, but that is exactly the kind of app I was hoping existed. Thx!" CreationDate="2009-07-15T07:31:55.603" UserId="63" />
+  <row Id="46" PostId="84" Text="+1 thx, I should have known Wikipedia would have a comprehensive page on the subject" CreationDate="2009-07-15T07:35:04.270" UserId="63" />
+  <row Id="49" PostId="62" Text="The idea behind this tab, as far as I understand, is to replace missing application's manifest (old application don't have one) and automatically request admin rights without having one." CreationDate="2009-07-15T07:36:01.707" UserId="21" />
+  <row Id="50" PostId="79" Score="1" Text="+1 mainly just for your name! :)" CreationDate="2009-07-15T07:36:11.600" UserId="63" />
+  <row Id="51" PostId="65" Text="Would you recommend getting one of those? I need a new keyboard and can't decide... :p" CreationDate="2009-07-15T07:37:19.677" UserId="62" />
+  <row Id="52" PostId="87" Text="The ones from canonical only go up to 7.10! ThoughtPolice has versions up to Jaunty" CreationDate="2009-07-15T07:37:27.553" UserId="27" />
+  <row Id="53" PostId="96" Text="+1 - I have a similar problem on Fedora 10 on my Dell Inspiron 1700 (random crash on resume from standby)" CreationDate="2009-07-15T07:38:30.687" UserId="120" />
