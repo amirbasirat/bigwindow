@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/hadoop"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
+
+	<context:property-placeholder
+		location="classpath:batch.properties,classpath:hadoop.properties"
+		ignore-resource-not-found="true" ignore-unresolvable="true" />
+
+	<!-- required since Hadoop Job is a class not an interface and we need to 
+		use a Job with step scope to access #{jobParameters['...']} -->
+	<beans:bean class="org.springframework.batch.core.scope.StepScope">
+		<beans:property name="proxyTargetClass" value="true" />
+	</beans:bean>
+
+	<batch:job id="job1">
+
+		<batch:step id="local-to-hadoop" next="invertedindex">
+			<batch:tasklet ref="localToHadoop" />
+		</batch:step>
+
+		<batch:step id="invertedindex">
+			<batch:tasklet ref="invertedindex-tasklet" />
+		</batch:step>
+	</batch:job>
+
+
+	<job-tasklet id="invertedindex-tasklet" job-ref="invertedindexJob" />
+
+	<job id="invertedindexJob" input-path="#{jobParameters['mr.input']}"
+		output-path="#{jobParameters['mr.output']}" mapper="com.activsteps.hadoopworkflows.invertedindex.InvertedIndexMapper"
+		reducer="com.activsteps.hadoopworkflows.invertedindex.InvertedIndexReducer" scope="step" />
+
+
+	<script-tasklet id="scriptTasklet" script-ref="hdfsScript"
+		scope="step">
+	</script-tasklet>
+
+	<script id="hdfsScript" location="copy-files.groovy">
+		<property name="localSourceFile" value="${app.home}/data/urlwords.txt" />
+		<property name="hdfsInputDir" value="/user/activsteps/springbatch/invertedindex/input" />
+		<property name="hdfsOutputDir" value="/user/activsteps/springbatch/invertedindex/output" />
+	</script>
+	<beans:bean id="hadoopConf" class="org.apache.hadoop.conf.Configuration" />
+
+	<beans:bean id="localToHadoop"
+		class="com.activsteps.hadoopworkflows.invertedindex.LocalToHadoop">
+		<beans:property name="localFile" value="${input.localFile}" />
+		<beans:property name="localDirectory" value="${input.localDirectory}" />
+		<beans:property name="hadoopFile" value="${input.hadoopFile}" />
+		<beans:property name="hadoopDirectory" value="${input.hadoopDirectory}" />
+		<beans:property name="hadoopConf" ref="hadoopConf" />
+		<beans:property name="confCoreSite" value="${conf.core.site}" />
+		<beans:property name="confHdfsSite" value="${conf.hdfs.site}" />
+	</beans:bean>
+</beans:beans>
+

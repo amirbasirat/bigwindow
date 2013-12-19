@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/hadoop"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
+
+
+	<!-- required since Job is a class not an interface -->
+	<beans:bean class="org.springframework.batch.core.scope.StepScope">
+		<beans:property name="proxyTargetClass" value="true" />
+	</beans:bean>
+	<batch:job id="job1">
+
+		<batch:step id="local-to-hadoop" next="invertedindex">
+			<batch:tasklet ref="localToHadoop" />
+		</batch:step>
+		<batch:step id="invertedindex">
+			<batch:tasklet ref="invertedindex-tasklet" />
+		</batch:step>
+	</batch:job>
+
+	<job-tasklet id="invertedindex-tasklet" job-ref="invertedindex-job" />
+
+	<job id="invertedindex-job" input-path="${invertedindex.input.path:/user/activsteps/springbatch/invertedindex/input}"
+		output-path="${invertedindex.output.path:/user/activsteps/springbatch/invertedindex/output}"
+		mapper="com.activsteps.hadoopworkflows.invertedindex.InvertedIndexMapper" reducer="com.activsteps.hadoopworkflows.invertedindex.InvertedIndexReducer" />
+
+</beans:beans>
