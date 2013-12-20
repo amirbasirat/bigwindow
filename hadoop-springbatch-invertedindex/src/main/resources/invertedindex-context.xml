@@ -23,8 +23,10 @@
 
 	<job-tasklet id="invertedindex-tasklet" job-ref="invertedindex-job" />
 
-	<job id="invertedindex-job" input-path="${invertedindex.input.path:/user/activsteps/springbatch/invertedindex/input}"
+	<job id="invertedindex-job"
+	    input-path="${invertedindex.input.path:/user/activsteps/springbatch/invertedindex/input}"
 		output-path="${invertedindex.output.path:/user/activsteps/springbatch/invertedindex/output}"
-		mapper="com.activsteps.hadoopworkflows.invertedindex.InvertedIndexMapper" reducer="com.activsteps.hadoopworkflows.invertedindex.InvertedIndexReducer" />
+		mapper="com.activsteps.hadoopworkflows.invertedindex.InvertedIndexMapper"
+		reducer="com.activsteps.hadoopworkflows.invertedindex.InvertedIndexReducer" />
 
 </beans:beans>
