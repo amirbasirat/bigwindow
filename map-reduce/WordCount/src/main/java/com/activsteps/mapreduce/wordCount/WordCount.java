@@ -10,7 +10,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 public class WordCount {
     public static void main(String[] args) throws Exception {        
 
-        String input = "input/test.txt";
+        String input = "/input/test.txt";
         String output = "out";
 
         // Create a new job
