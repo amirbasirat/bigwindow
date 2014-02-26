@@ -1,5 +1,6 @@
 package com.akrantha.hadoop.nlp;
 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -12,19 +13,15 @@ import com.akrantha.nlp.TweetSentiMapper;
 public class CountUniqueTokensMain {
 
 	public static void main(String args[]) throws Exception {
-// hadoop jar target/TwitterMining-1.0-SNAPSHOT.jar com.akrantha.hadoop.nlp.CountUniqueTokensMain
-
-		/*Path inputpath = new Path("/mine/tweets-mobile-train-vodaphone.tsv");
-		Path outputpath = new Path("/mine/output/");
-		*/Path inputpath = new Path(args[0]);
+		Path inputpath = new Path(args[0]);
 		Path outputpath = new Path(args[1]);
-		
 		Job job = new Job();
 		job.setJarByClass(com.akrantha.hadoop.nlp.CountUniqueTokensMain.class);
-		FileSystem.get(job.getConfiguration()).deleteOnExit(outputpath);
+		FileSystem.get(new Configuration()).delete(outputpath, true);
+		
 		FileInputFormat.addInputPath(job, inputpath);
 		FileOutputFormat.setOutputPath(job, outputpath);
-
+			
 		// job.setMapperClass(TokenizerMapper.class);
 		job.setMapperClass(TweetSentiMapper.class);
 

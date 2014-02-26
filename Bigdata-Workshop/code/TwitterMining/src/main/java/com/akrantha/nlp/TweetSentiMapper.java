@@ -32,8 +32,13 @@ public class TweetSentiMapper extends Mapper<LongWritable, Text, Text, Text> {
 		String sentence = value.toString();
 
 		String[] tokens = sentence.split("\\s");
-		context.write(new Text(sentence),
-				new Text(bayes.classify(Arrays.asList(tokens)).getCategory()));
+
+		if (tokens[0].matches(".*\\d.*")) {
+			context.write(new Text(sentence),
+					new Text(bayes.classify(Arrays.asList(tokens))
+							.getCategory()));
+
+		}
 
 	}
 
