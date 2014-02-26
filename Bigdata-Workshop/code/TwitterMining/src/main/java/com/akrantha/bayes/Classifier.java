@@ -14,7 +14,7 @@ import java.util.Set;
  * basic probabilities – both category and feature probabilities. The classify
  * function has to be implemented by the concrete classifier class.
  * 
- * @author Philipp Nolte
+ * 
  * 
  * @param <T>
  *            A feature class
